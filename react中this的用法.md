@@ -100,7 +100,7 @@ class Demo extends Component{
 
 当我们执行上述代码的时候，会报如下图所示的错误：
 
-图片-------
+![error](https://github.com/ToBeNumerOne/blog/blob/master/this-error.png)
 
 ## this指向问题的解决方法
 
