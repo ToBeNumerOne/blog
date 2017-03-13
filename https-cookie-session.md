@@ -6,6 +6,9 @@
 
 ## Https
 
+[Https](https://en.wikipedia.org/wiki/HTTPS)也可以称作Http+TLS,或者Http+SSL,或者Http+Secure,是计算机网络中一种比较安全的通讯协议.Https可以理解成被Transport Layer Security(TLS)协议或者它的前辈Secure Sockets Layer(SSL)协议加密的Http协议.叙述概念有点绕口以及晦涩难懂,具体请看下面.
+
+
 
 ## Cookie
 
