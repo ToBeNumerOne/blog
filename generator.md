@@ -3,9 +3,6 @@
 --------------
 > es6中提供了generator函数,作为一种异步编程的解决方案.本文主要介绍Generator函数的基本概念及其在异步编程中的运用.
 
-
-![image](https://github.com/ToBeNumerOne/blog/blob/master/https.jpg)
-
 ## 前言
 
 最近,在学习基于redux-saga的dva框架,以便后续对apollo组件库进行改进.学习的过程中,发现其中使用到了generator函数.但是因为之前的项目中没有用到过此函数,所以对于该函数也不是特别了解.所以写下这篇学习笔记,来方便大家学习.
@@ -250,6 +247,35 @@ result.value.then(function(data){
 上述代码,我们使用fetch方法发起一个异步请求,利用yield断点的功能,将发起请求与异步处理的第二阶段分开.上述代码中,第一次调用next方法返回的是promise对象,所以接下来使用then方法来继续调用next方法,可能解释的有点绕口,大家可以自己看下上述代码.
 
 总之无论Promise还是Generator,他们对于异步任务主要的用武之地就是同步化的代码表现.
+
+## Generator函数的this
+
+说到函数,不得不说this.有关js普通函数中this的用法大家可以自行百度.既然聊到this,大家可能会问,Generator函数中的this的使用方式是否和其他函数一样?首先需要说明的是Generator函数返回的遍历对象,与普通函数实例化出来的对象一致,继承了Generator函数对象的prototype.但是Generator函数不能被当做构造函数,因为它返回的是迭代器对象,不是具有this的实例化对象.所以这也就代表了Generator函数无法与new命令一起使用.
+
+那么问题来了,我们已经习惯了像使用js中普通函数那样使用this,应该如何保持使用习惯,在Generator函数中也像普通函数中一样,使用this.具体代码改造如下:
+
+```javascript
+function* generator() {
+  this.a = 'a';
+  yield this.b = 'b';
+  yield this.c = 'c';
+}
+
+function construct() {
+  return generator.call(generator.prototype);
+}
+var obj = new construct();
+
+obj.next();
+obj.next();
+obj.next();
+
+obj.a
+obj.b
+obj.c
+```
+
+具体的改造方法就是对Generator函数使用call函数,将Generator函数内部的this对象绑定到他的prototype上面,因为它的返回值继承了prototype,所以这个迭代器对象既可以使用next方法,同时也相当于实例对象.如上述代码中可以通过```f.a```访问Generator函数通过this定义的值.同时通过call方法的改进,可以将Generator函数当做普通构造函数,来与new命令配合使用生成具有实例对象特性的迭代器对象.
 
 ## 结语
 
