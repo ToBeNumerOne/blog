@@ -1,7 +1,7 @@
 # javascript异步机制
 
 ----
-> 本文主要讲解javascript中的异步机制。
+> 一道由setTimeout面试题引发的javascript异步机制的思考与说明。
 
 ## 一、前言
 
