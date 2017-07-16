@@ -1,5 +1,6 @@
 # ES8 新特性一览
 -
+
 本文是一篇译文，搬运国外的优秀博文。主要讲解ES8(ES2017)新增的功能、特性。文章首发于[掘金](https://juejin.im/post/596713b75188250da20604cb)。
 
 <img class="progressiveMedia-noscript js-progressiveMedia-inner" src="https://cdn-images-1.medium.com/max/2000/1*g3nPXrupuJ3koTjRNr6daw.png">
